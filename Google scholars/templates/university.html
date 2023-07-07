@@ -1,0 +1,119 @@
+{% extends 'base.html' %}
+{% block title %}home{% endblock title %}
+{% block body %}
+    <style>
+
+
+.form-control{
+    width: 22%!important;
+}
+.btn{
+    color:white!important;
+    background: #0b0b0b!important;
+}
+.btn:hover{
+    color: white!important;
+    background: darkgreen!important;
+}
+ input.form-control .input-sm {
+    height: 30px!important;
+    padding: 5px 10px!important;
+    font-size: 12px!important;
+    line-height: 1.5!important;
+    width: 190px!important;
+    border-radius: 3px!important;
+}
+label {
+
+    width: 100%!important;
+}
+div.dataTables_filter {
+    text-align: left!important;
+}
+    </style>
+    <div class="content">
+        <div class="container">
+
+        </div>
+        <!-- Page-Title -->
+        <div class="row">
+            <div class="col-sm-12">
+                <h4 class="pull-left page-title">Search University's Publications</h4>
+                <ol class="breadcrumb pull-right">
+                    <li><a href="../university">Search University's Publications</a></li>
+                </ol>
+            </div>
+        </div>
+        <div class="row " style="margin-bottom: 20px">
+            <div class="col-sm-12" >
+                <form method="POST">
+                    {% csrf_token %}
+                    <input class="form-control me-2" type="search" placeholder="Search" name="search"
+                           aria-label="Search">
+                    <button class="btn btn-outline-success" style="visibility: hidden" type="submit">Search</button>
+                </form>
+
+
+            </div>
+          <div class="row">
+                            <div class="col-md-12">
+                                <div class="panel panel-default">
+                                    <div class="panel-heading">
+                                        <h3 class="panel-title">University's Publications</h3>
+                                    </div>
+                                    <div class="panel-body">
+                                        <div class="row">
+                                            <div class="col-md-12 col-sm-12 col-xs-12">
+                                                <table id="datatable" class="table table-striped table-bordered">
+                                                    <thead>
+                                                        <tr>
+                                                            <th>Publication Titles</th>
+                                                        </tr>
+                                                    </thead>
+
+
+                                                </table>
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div> <!-- End Row -->
+
+
+        </div> <!-- container -->
+
+    </div> <!-- content -->
+
+
+
+    <script>
+
+         fetch('titles_by_uni')
+            .then(response => response.json())
+            .then(result => {
+
+                var json_data = result;
+                console.log(json_data);
+                $(document).ready(function () {
+                    $('#datatable').DataTable({
+                        data: json_data,
+                        dom:'Bfrtip',
+                        buttons : [],
+                        language: {
+                        searchPlaceholder: "Search University's Publications",
+                        search: '<i style="font-size: 20px;margin-right: 10px" class="fa fa-search" aria-hidden="true"></i>'
+                    },
+                        searching : true,
+                        columns: [
+                            {data: "title"}
+                        ]
+                    });
+                });
+            })
+
+    </script>
+
+{% endblock body %}

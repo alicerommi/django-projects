@@ -1,0 +1,87 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+        <meta charset="utf-8" />
+        <title> LOGIN | GOOGLE SCHOLAR</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+        <meta content="A fully featured admin theme which can be used to build CRM, CMS, etc." name="description" />
+        <meta content="Coderthemes" name="author" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+
+        <link rel="shortcut icon" href="{% static 'assets/images/favicon_1.ico' %}">
+
+        <link href="{% static 'assets/css/bootstrap.min.css' %}" rel="stylesheet" type="text/css">
+        <link href="{% static 'assets/css/core.css' %}" rel="stylesheet" type="text/css">
+        <link href="{% static 'assets/css/icons.css' %}" rel="stylesheet" type="text/css">
+        <link href="{% static 'assets/css/components.css' %}" rel="stylesheet" type="text/css">
+        <link href="{% static 'assets/css/pages.css' %}" rel="stylesheet" type="text/css">
+        <link href="{% static 'assets/css/menu.css' %}" rel="stylesheet" type="text/css">
+        <link href="{% static 'assets/css/responsive.css' %}" rel="stylesheet" type="text/css">
+        <script src="{% static 'assets/js/modernizr.min.js'%}"></script>
+    </head>
+    <body>
+
+
+        <div class="wrapper-page">
+
+            <div class="panel panel-color panel-primary panel-pages">
+                <div class="panel-heading bg-img">
+                    <div class="bg-overlay"></div>
+                    <h3 class="text-center m-t-10 text-white"> Sign In to <strong>Gscholar</strong> </h3>
+                </div>
+
+
+                <div class="panel-body">
+                <form class="form-horizontal m-t-20" action="../" method="post">
+                     {% csrf_token %}
+                    <div class="form-group">
+                        <div class="col-xs-12">
+                            <input class="form-control input-lg" type="text" id = "loginusername" name="loginusername" required="" placeholder="Username">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="col-xs-12">
+                            <input class="form-control input-lg" type="password" id="loginpass" name="loginpass" required="" placeholder="Password">
+                        </div>
+                    </div>
+
+
+                    <div class="form-group text-center m-t-40">
+                        <div class="col-xs-12">
+                            <button class="btn btn-primary btn-lg w-lg waves-effect waves-light" type="submit">Log In</button>
+                        </div>
+                        <h4 style="text-align: center; color: red; padding-top: 10px">{{ d }}</h4>
+                    </div>
+
+
+                </form>
+                </div>
+
+            </div>
+        </div>
+
+
+    	<script>
+            var resizefunc = [];
+        </script>
+
+        <!-- Main  -->
+        <script src="{% static 'assets/js/jquery.min.js' %}"></script>
+        <script src="{% static 'assets/js/bootstrap.min.js'%}"></script>
+        <script src="{% static 'assets/js/detect.js' %}"></script>
+        <script src="{% static 'assets/js/fastclick.js' %}"></script>
+        <script src="{% static 'assets/js/jquery.slimscroll.js' %}"></script>
+        <script src="{% static 'assets/js/jquery.blockUI.js' %}"></script>
+        <script src="{% static 'assets/js/waves.js' %}"></script>
+        <script src="{% static 'assets/js/wow.min.js' %}"></script>
+        <script src="{% static 'assets/js/jquery.nicescroll.js' %}"></script>
+        <script src="{% static 'assets/js/jquery.scrollTo.min.js' %}"></script>
+
+        <script src="{% static 'assets/js/jquery.app.js' %}"></script>
+
+	</body>
+
+<!-- Mirrored from moltran.coderthemes.com/green/pages-login.html by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 18 Apr 2018 05:58:52 GMT -->
+</html>
