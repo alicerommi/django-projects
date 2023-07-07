@@ -1,0 +1,45 @@
+{% include 'header.html' %} {% block body %}
+<div class="content-page">
+  <!-- Start content -->
+  <div class="content">
+    <div class="container">
+      <div class="row">
+       
+          <div class="panel panel-inverse">
+                                    <div class="panel-heading">
+                                        <h3 class="panel-title" style="color:white;">{{ request.user }} Actions History</h3>
+                                    </div>
+                                    <div class="panel-body">
+          
+                                    <table class="table table-bordered dt-bootstrap no-footer" id="history_table">
+                                        <thead>
+                                            <tr>
+                                                <th><center>Page Name</center></th>
+                                                <th><center>Paragraph#</center></th>
+                                                <th><center>Date</center></th>
+                                                <th><center>Time</center></th>
+                                                <th><center>Actions</center></th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                          {% if data %}
+                                            {% for a in data %}
+                                              <tr>
+                                                  <td><center>{{ a.tab_name_formatted }}</center></td>
+                                                  <td><center>{{ a.paragraph_number }} </center></td>
+                                                  <td><center>{{ a.date_only }}</center></td>
+                                                  <td><center>{{ a.time_only }}</center></td>
+                                                  <td><center><button type="button" class="btn btn-danger btn-sm shhow_paragraph" id="{{ a.paragraph_number }} Paragraph of {{ a.tab_name_formatted }}" data-id="{{ a.copied_paragraph }}">Read Copied Paragraph</button></center></td>
+                                              </tr>
+                                            {% endfor %}
+                                          {% endif %}
+                                        </tbody>
+                                    </table>
+                                  </div>
+
+        </div>
+      
+    </div>
+  </div>
+</div>
+{% endblock body %} {% include 'footer.html' %}

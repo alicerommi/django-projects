@@ -1,0 +1,334 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>Stock Data Analysis - Solution For US Stocks</title>
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
+    />
+    <meta content="Writers Portal" name="description" />
+    <meta content="Writers Portal" name="author" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+     <link
+      href="{% static 'assets/images/favicon_1.ico' %}"
+      type="image/ico"
+      rel="Shortcut Icon"
+    /> 
+
+    <style type="text/css">
+      .highleight{background-color:#FFFF00;
+        font-weight: 600;
+      }
+      #top_form form label{
+          color:black;
+      }
+      
+    </style>
+    <!-- Custom Files -->
+    <!--venobox lightbox-->
+    <link
+      rel="stylesheet"
+      href="{% static 'assets/plugins/magnific-popup/dist/magnific-popup.css' %}"
+    />
+
+
+    <link
+      href="{% static 'assets/css/bootstrap.min.css' %}"
+      rel="stylesheet"
+      type="text/css"
+    />
+<link href="{% static 'assets/plugins/notifications/notification.css' %}" rel="stylesheet">
+    <link
+      href="{% static 'assets/css/core.css' %}"
+      rel="stylesheet"
+      type="text/css"
+    />
+    <link
+      href="{% static 'assets/css/icons.css' %}"
+      rel="stylesheet"
+      type="text/css"
+    />
+    <link
+      href="{% static 'assets/css/components.css' %}"
+      rel="stylesheet"
+      type="text/css"
+    />
+    <link
+      href="{% static 'assets/css/pages.css' %}"
+      rel="stylesheet"
+      type="text/css"
+    />
+    <link
+      href="{% static  'assets/css/menu.css' %}"
+      rel="stylesheet"
+      type="text/css"
+    />
+    <link
+      href="{% static 'assets/plugins/colorpicker/colorpicker.css' %}"
+      rel="stylesheet"
+      type="text/css"
+    />
+    <link
+      href="{% static 'assets/plugins/jquery-multi-select/multi-select.css' %}"
+      rel="stylesheet"
+      type="text/css"
+    />
+    <link
+      href="{% static 'assets/plugins/select2/dist/css/select2.css' %}"
+      rel="stylesheet"
+      type="text/css"
+    />
+    <link
+      href="{% static 'assets/plugins/select2/dist/css/select2-bootstrap.css' %}"
+      rel="stylesheet"
+      type="text/css"
+    />
+    <link
+      href="{% static 'assets/css/responsive.css' %}"
+      rel="stylesheet"
+      type="text/css"
+    />
+    <link
+      href="{% static 'assets/plugins/datatables/jquery.dataTables.min.css' %}"
+      rel="stylesheet"
+      type="text/css"
+    />
+    <link
+      href="{% static 'assets/plugins/datatables/buttons.bootstrap.min.css' %}"
+      rel="stylesheet"
+      type="text/css"
+    />
+    <link
+      href="{% static 'assets/plugins/datatables/fixedHeader.bootstrap.min.css' %}"
+      rel="stylesheet"
+      type="text/css"
+    />
+    <link
+      href="{% static 'assets/plugins/datatables/responsive.bootstrap.min.css' %}"
+      rel="stylesheet"
+      type="text/css"
+    />
+    <link
+      href="{% static 'assets/plugins/datatables/scroller.bootstrap.min.css' %}"
+      rel="stylesheet"
+      type="text/css"
+    />
+    <!-- Plugins css -->
+    <link
+      href="{% static 'assets/plugins/modal-effect/css/component.css' %}"
+      rel="stylesheet"
+    />
+
+    <link href="{% static 'assets/plugins/tagsinput/jquery.tagsinput.css' %}" rel="stylesheet">
+    <link href="{% static 'assets/plugins/toggles/toggles.css' %}" rel="stylesheet">
+
+
+    <script src="{% static 'assets/js/modernizr.min.js' %}"></script>
+
+
+  </head>
+  <body class="fixed-left">
+    <!-- <input type="hidden" id="" > -->
+    <!-- Begin page -->
+    <div id="wrapper">
+      <!-- Top Bar Start -->
+      <div class="topbar">
+        <!-- LOGO -->
+        <div class="topbar-left">
+          <div class="text-center">
+            <a href="writer_main_page" class="logo"><i class="fa fa-home"></i></a>
+          </div>
+        </div>
+        <!-- Button mobile view to collapse sidebar menu -->
+        <div class="navbar navbar-default" role="navigation">
+
+
+          <div class="container">
+            <div class="">
+              <ul class="nav navbar-nav navbar-right pull-right">           
+                  <li class="hidden-xs">
+                      <a href="#" id="btn-fullscreen" class="waves-effect waves-light"><i class="md md-crop-free"></i></a>
+                  </li>
+                  <li class="hidden-xs">
+                      <a href="logout_writer" title="Logout Me" id="btn-fullscreen" class="waves-effect waves-light"><i class="md md-settings-power"></i></a>
+                  </li>
+              </ul>
+            </div>
+            <div class="">
+              <div class="pull-left">
+                
+                <span class="clearfix"></span>
+              </div>
+            </div>
+            <!--/.nav-collapse -->
+          </div>
+        </div>
+      </div>
+      <!-- Top Bar End -->
+
+      <!-- ========== Left Sidebar Start ========== -->
+
+      <div class="left side-menu">
+        <div class="sidebar-inner slimscrollleft">
+          <div class="user-details">
+         
+            
+                     <!--- Divider -->
+          <div id="sidebar-menu">
+          <!--   <ul id="wp_settings_pages_admin">
+
+            </ul>  -->
+            <ul id="wp_all_menus">
+              {% if user.username == 'rehmana578@gmail.com' %}
+               <li style="display: none;">
+                <a href="writer_portal_access_control_tab" class="waves-effect"
+                  ><span> Tab Access Settings </span></a
+                >
+              </li>
+              {% endif %}
+
+              <li class='' id="insert_after">
+                <a href="writer_main_page" id="writer_main_page"  class="waves-effect"
+                  ><span> Home </span></a
+                >
+              </li>
+
+
+<!--              <li class='appending_lis'>-->
+<!--                <a href="headings_tab" id="headings_tab"  class="waves-effect"-->
+<!--                  ><span> Symbol Data </span></a-->
+<!--                >-->
+<!--              </li>-->
+                <li class='appending_lis'>
+                <a href="symbol_data_feeds"   class="waves-effect"
+                  ><span> Stock Key Data </span></a
+                >
+              </li>
+
+                <li class='appending_lis'>
+                <a href="stock_performance" class="waves-effect"
+                  ><span> Stock Performance Data</span></a
+                >
+              </li>
+
+
+{#              <li class='appending_lis'>#}
+{#                <a href="stocks_performance_tab" id="stocks_performance_tab"  class="waves-effect"#}
+{#                  ><span> Stock Performance </span></a#}
+{#                >#}
+{#              </li>#}
+{##}
+{#              <li class='appending_lis'>#}
+{#                <a href="institutional_ownership_tab" id="institutional_ownership_tab"  class="waves-effect"#}
+{#                  ><span> Institutional Ownership </span></a#}
+{#                >#}
+{#              </li>#}
+{##}
+{#              <li class='appending_lis'>#}
+{#                <a href="upgrade_and_downgrade_tab" id="upgrade_and_downgrade_tab"  class="waves-effect"#}
+{#                  ><span> Upgrade & Downgrade </span></a#}
+{#                >#}
+{#              </li>#}
+{#              <li class='appending_lis'>#}
+{#                <a href="key_ratios_tab" id="key_ratios_tab"  class="waves-effect"#}
+{#                  ><span> Key Ratios </span></a#}
+{#                >#}
+{#              </li>#}
+{##}
+{#              <li class='appending_lis'>#}
+{#                <a href="insider_trades_tab" id="insider_trades_tab"  class="waves-effect"#}
+{#                  ><span> Insider Trades </span></a#}
+{#                >#}
+{#              </li>#}
+{##}
+{#              <li class='appending_lis'>#}
+{#                <a#}
+{#                  href="fundamentals_and_recent_trades_tab" id="fundamentals_and_recent_trades_tab" #}
+{#                  class="waves-effect"#}
+{#                  ><span> Fundamentals & Recent Trades </span></a#}
+{#                >#}
+{#              </li>#}
+{##}
+{#              <li class='appending_lis'>#}
+{#                <a href="earning_revenue_tab" id="earning_revenue_tab"  class="waves-effect"#}
+{#                  ><span> Earning & Revenue </span></a#}
+{#                >#}
+{#              </li>#}
+{##}
+{#              <li class='appending_lis'>#}
+{#                <a href="analyst_rating_tab" id="analyst_rating_tab"  class="waves-effect"#}
+{#                  ><span> Analyst Rating </span></a#}
+{#                >#}
+{#              </li>#}
+{##}
+{#              <li class='appending_lis'>#}
+{#                <a href="technical_analysis_tab" id="technical_analysis_tab"  class="waves-effect"#}
+{#                  ><span> Technical Analysis </span></a#}
+{#                >#}
+{#              </li>#}
+{#              #}
+{#              <li class='appending_lis'>#}
+{#                <a href="penny_stock_headings_tab" id="penny_stock_headings_tab"  class="waves-effect"#}
+{#                  ><span> Penny Headings</span></a#}
+{#                >#}
+{#              </li>#}
+{##}
+{#              <li class='appending_lis'>#}
+{#                <a href="penny_stock_tab" id="penny_stock_tab"  class="waves-effect"#}
+{#                  ><span> Penny Stock Tab</span></a#}
+{#                >#}
+{#              </li>#}
+{##}
+{#              <li class='appending_lis'>#}
+{#                <a href="basic_quotes" id="basic_quotes"  class="waves-effect"#}
+{#                  ><span> Basic Quotes</span></a#}
+{#                >#}
+{#              </li>#}
+{##}
+{#              <li class='appending_lis'>#}
+{#                <a href="basic_quotes_current_tab" id="basic_quotes_current_tab"  class="waves-effect"#}
+{#                  ><span> Basic Quotes Current</span></a#}
+{#                >#}
+{#              </li>#}
+{##}
+{##}
+{##}
+{##}
+{#              <li class='appending_lis'>#}
+{#                <a href="basic_quotes_premarket_tab" id="basic_quotes_premarket_tab"  class="waves-effect"#}
+{#                  ><span> Basic Quotes Premarket</span></a#}
+{#                >#}
+{#              </li>#}
+{##}
+{#               <li class='appending_lis'>#}
+{#                <a href="basic_quotes_after_hours" id="basic_quotes_after_hours"  class="waves-effect"#}
+{#                  ><span> Basic Quotes After Hours</span></a#}
+{#                >#}
+{#              </li>#}
+{##}
+{#               <li class='appending_lis'>#}
+{#                <a href="general_headings_tab" id="general_headings_tab"  class="waves-effect"#}
+{#                  ><span> General Headings </span></a#}
+{#                >#}
+{#              </li>#}
+
+
+
+              <li>
+                <a href="logout_writer"  class="waves-effect"
+                  ><span> Logout </span></a
+                >
+              </li>
+            </ul>
+            <div class="clearfix"></div>
+          </div>
+          <div class="clearfix"></div>
+        </div>
+      </div>
+      <!-- Left Sidebar End -->
+    </div>
+  </body>
+  <!-- </html> -->
+</html>

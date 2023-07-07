@@ -1,0 +1,810 @@
+{% extends "header.html" %}
+{% block title %}CP Closing Calculator{% endblock %}
+{% block header_links %}
+<style>
+    .quantity{background-color: yellow !important;}
+    .input_highlighter{background-color: yellow !important;}
+    table td:first-child { text-align: center; font-weight:600 !important; } 
+    .item_quantity {background-color: yellow !important;}
+    .unit_highlighter{font-weight:600 !important; }
+    .modal_tables td:first-child {
+        font-weight:600 !important; 
+    }
+    @media (max-width: 550px) {
+            .table-bordered td{
+                font-size: 16px !important;
+            }
+            #closing_calculator_form label{
+                font-size: 14px !important;
+            }
+           ul#select2-results-1 .select2-result-label {
+                font-size: 14px !important;
+            }
+            div#select2-drop .select2-search .select2-input{
+                font-size: 14px !important;
+                font-weight: 600 !important;
+            }
+
+            .no_space_in_copy_board{
+                margin: 0 !important;
+                padding: 0 !important;
+                font-size: 14px !important;
+            }
+    }
+    .no_space_in_copy_board{
+        margin: 0 !important;
+        padding: 0 !important;
+    }
+</style>
+{% endblock %}
+{% block body %}
+<div class="row">
+        <form method="post" name="closing_calculator_form" id="closing_calculator_form">
+                <div class="col-md-6">
+                    <div class="panel panel-color panel-info">
+                        <div class="panel-heading"> 
+                            <h3 class="panel-title">CP Closing Calculator | Fill The Form Inputs</h3> 
+                        </div> 
+                        <div class="panel-body"> 
+
+                                            <div id="hide_values_appender">
+                                                {%  if current_month_sheet_flag_exists==1 %}
+                                                    {% for i in  arr_to_send %}
+                                                        <input type="hidden" name="values[]"  value="{{ i }}">
+                                                    {% endfor %}
+                                                {% endif %}
+                                            </div>
+                                    
+
+                                   
+                            
+                                    <div class= "col-md-3">
+                                        <div class="form-group">
+                                            <label>Nama Staff</label>
+                                            <input type="text" name="nama_stuff" id="nama_stuff" class="form-control" required>
+                                        </div>
+                                    
+                                    </div>
+                                    <div class= "col-md-3">
+                                        <div class="form-group">
+                                            <label>Choose Outlet</label>
+                                            
+                                            <select  name="outlet" id="outlet" class="form-control select2" required>
+                                                {% for array in result %}
+                                                    <option value= "{{ array[1] }}"> {{ array[0] }} </option>
+                                                {% endfor %}
+                                            </select>
+
+                                        </div>
+                                    </div>
+
+                                    <div class= "col-md-3">
+                                        <div class="form-group">
+                                            <label>Date</label>
+                                            <input type="date" name="date" id="date" class="form-control" required>
+                                        </div>
+                                </div>
+                                
+                            
+
+
+                            <table id="datatable" class="table table-striped table-bordered">
+                                                                <thead>
+                                                                    <tr>
+                                                                        <th class="text-center">RM</th>
+                                                                        <th class="text-center">QTY</th>
+                                                                        <th class="text-center">Total (RM)</th>
+                                                                    
+                                                                    </tr>
+                                                                </thead>
+
+                                                        
+                                                                <tbody>
+                                                                    <tr id="row_1">
+                                                                        <td>100</td>
+                                                                        <td width="30%"><div class="form-group"><input  data-id="1" type="number" class="quantity form-control" min="1" width="50%"></div></td>
+
+                                                                        <td id="calculation_1" class="value">0.00</td>
+                                                                        
+                                                                    </tr>
+                                                                    <tr id="row_2">
+                                                                        <td>50</td>
+                                                                        <td width="30%"><div class="form-group"><input data-id="2" type="number" class="quantity form-control" min="1" width="50%"></div></td>
+
+                                                                        <td id="calculation_2" class="value">0.00</td>
+                                                                        
+                                                                    </tr>
+                                                                    <tr id="row_3">
+                                                                        <td>20</td>
+                                                                        <td width="30%"><div class="form-group"><input type="number" data-id="3" class="quantity form-control" min="1" width="50%"></div></td>
+
+                                                                        <td id="calculation_3" class="value">0.00</td>
+                                                                        
+                                                                    </tr>
+                                                                    <tr id="row_4">
+                                                                        <td>10</td>
+                                                                        <td width="30%"><div class="form-group"><input type="number" data-id="4" class="quantity form-control" min="1" width="50%"></div></td>
+
+                                                                        <td id="calculation_4" class="value">0.00</td>
+                                                                        
+                                                                    </tr>
+                                                                    <tr id="row_5">
+                                                                        <td>5</td>
+                                                                        <td width="30%"><div class="form-group"><input type="number"  data-id="5" class="quantity form-control" min="1" width="50%"></div></td>
+
+                                                                        <td id="calculation_5" class="value">0.00</td>
+                                                                        
+                                                                    </tr>
+                                                                    <tr id="row_6">
+                                                                        <td>1</td>
+                                                                        <td width="30%"><div class="form-group"><input type="number" data-id="6" class="quantity form-control" min="1" width="50%"></div></td>
+
+                                                                        <td id="calculation_6" class="value">0.00</td>
+                                                                        
+                                                                    </tr>
+                                                                    <tr id="row_7">
+                                                                        <td>0.5</td>
+                                                                        <td width="30%"><div class="form-group"><input type="number" data-id="7" class="quantity form-control" min="1" width="50%"></div></td>
+
+                                                                        <td id="calculation_7" class="value">0.00</td>
+                                                                        
+                                                                    </tr>
+                                                                    <tr id="row_8">
+                                                                        <td>0.2</td>
+                                                                        <td width="30%"><div class="form-group"><input type="number" data-id="8" class="quantity form-control" min="1" width="50%"></div></td>
+
+                                                                        <td id="calculation_8" class="value">0.00</td>
+                                                                        
+                                                                    </tr>
+                                                                    <tr id="row_9">
+                                                                        <td>0.1</td>
+                                                                        <td width="30%"><div class="form-group"><input type="number"  data-id="9" class="quantity form-control" min="1" width="50%"></div></td>
+
+                                                                        <td id="calculation_9" class="value">0.00</td>
+                                                                        
+                                                                    </tr>
+                                                                    <tr id="row_10">
+                                                                        <td>0.05</td>
+                                                                        <td width="30%"><div class="form-group"><input type="number"  data-id="10" class="quantity form-control" min="1" width="50%"></div></td>
+                                                                        <td id="calculation_10" class="value">0.00</td>
+                                                                        
+                                                                    </tr>
+
+                                                                    <tr id="row_11">
+                                                                        <td>TOTAL CASH IN DRAWER (RM)</td>
+                                                                        <td class="text-center">A</td>
+                                                                        <td id="total_amount">0.00</td>
+
+                                                                    </tr>
+
+                                                                    <tr id="row_12">
+                                                                        <td>PETTY CASH (RM)</td>
+                                                                        <td class="text-center">B</td>
+                                                                        <td id="b_cell"><input type="number" id="petty_cash_input" data-id="12" class="form-control"  readonly disabled></td> 
+                                                                            
+                                                                    </tr>
+
+                                                                    <tr id="row_13">
+                                                                        <td>FLOAT (RM)</td>
+                                                                        <td class="text-center">C</td>
+                                                                        <td id="c_cell"><input type="number" step=".01" id="float_rm_input" data-id="13" class="form-control input_highlighter" required></td> 
+                                                                            
+                                                                    </tr>
+
+                                                                    <tr id="row_14">
+                                                                        <td>E-WALLETs+CREDIT CARDs (RM)</td>
+                                                                        <td class="text-center">D</td>
+                                                                        <td id="d_cell"><input type="number" step=".01" id="e_wallets_rm_input" data-id="14" class="form-control input_highlighter" required></td> 
+                                                                    </tr>
+
+                                                                    <tr id="row_15">
+                                                                        <td>TOTAL BANK IN (RM)</td>
+                                                                        <td class="text-center">E = A - C</td>
+                                                                        <td id="e_cell">0.00</td> 
+                                                                    </tr>
+                                                                    <tr id="row_16">
+                                                                        <td>TOTAL SALES (RM)</td>
+                                                                        <td class="text-center">F = E + B + D</td>
+                                                                        <td id="f_cell">0.00</td> 
+                                                                    </tr>
+
+                                                                    <tr id="row_17">
+                                                                        <td>TOTAL Z-REPORT (RM)</td>
+                                                                        <td class="text-center">G</td>
+                                                                        <td id="g_cell"><input type="number" step=".01" id="total_z_report_rm_input" data-id="17" class="form-control input_highlighter" required></td> 
+                                                                    </tr>
+
+                                                                    <tr id="row_18" style="display:none;">
+                                                                        <td>-</td>
+                                                                        <td class="text-center">H = F - G</td>
+                                                                        <td id="h_cell">0.00</td> 
+                                                                    </tr>
+
+                                                                    <tr id="row_19" style="display:none;">
+                                                                        <td>-</td>
+                                                                        <td class="text-center">I = G - F</td>
+                                                                        <td id="i_cell">0.00</td> 
+                                                                    </tr>
+
+
+                                                                    <tr id="row_20">
+                                                                        <td>Total Bank In Cash (RM)</td>
+                                                                        <td class="text-center">J</td>
+                                                                        <td id="j_cell">0.00</td> 
+                                                                    </tr>
+
+                                                                </tbody>
+                            </table>
+
+
+                        </div>
+
+
+                    </div>
+                </div>
+                <div class = "col-md-6">
+                    <div class="panel panel-color panel-info">
+                        <div class="panel-heading"> 
+                            <h3 class="panel-title">1) GROCERIES ORDER VIEW </h3> 
+                        </div> 
+                        <div class="panel-body"> 
+            
+                            <table class="table table-striped table-bordered" id="" >
+                                <thead>
+                                    <tr>
+                                        <th class="text-center">PETTY CASH ITEMS </th>
+                                        <th class="text-center">QTY(pkt)</th>
+                                        <th class="text-center">AMOUNT/pkt (RM)</th>
+                                        <th class="text-center">TOTAL (RM)</th>
+
+                                    <tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>Ice:</td>
+                                        <td><input type="number" min="0" name="groceries_ice_input_quantity" id="groceries_ice_input_quantity" class="item_quantity form-control" width="50%"></td>
+                                        <td><input type="number" min="0" step=".01" name="groceries_ice_input_per_packet_price" id="groceries_ice_input_per_packet_price" class="item_quantity form-control" width="50%"></td>
+                                        <td><input type="number" min="0" name="groceries_ice_input" id="groceries_ice_input" class="form-control petty_cash_summer_input" readonly disabled width="50%"></td>
+                                        
+                                    </tr>
+
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+
+                <div class = "col-md-6">
+                    <div class="panel panel-color panel-info">
+                        <div class="panel-heading"> 
+                            <h3 class="panel-title">2) GROCERIES ORDER VIEW </h3> 
+                        </div> 
+                        <div class="panel-body"> 
+            
+                            <table class="table table-striped table-bordered" id="datatable_items" >
+                                <thead>
+                                    <tr>
+                                        <th class="text-center">PETTY CASH ITEMS </th>
+                                        <th class="text-center">AMOUNT(RM)</th>
+
+                                    <tr>
+                                </thead>
+                                <tbody>
+                                   
+                                    <tr>
+                                        <td>Eggs:</td>
+                                        <td><input type="number" step=".01" min="0" name="groceries_eggs_input" id="groceries_eggs_input" class="petty_cash_summer_input item_quantity form-control" width="50%"></td>
+                                        
+                                    </tr>
+                                    <tr>
+                                        <td>Sugar:</td>
+                                        <td><input type="number" step=".01" min="0" name="groceries_sugar_input" id="groceries_sugar_input" class="petty_cash_summer_input item_quantity form-control" width="50%"></td>
+                                       
+                                    </tr>
+                                    <tr>
+                                        <td>Oils:</td>
+                                        <td><input type="number" step=".01" min="0" name="groceries_oils_input" id="groceries_oils_input" class="petty_cash_summer_input item_quantity form-control" width="50%"></td>
+                                      
+                                    </tr>
+                                    <tr>
+                                        <td>Full Cream Milk:</td>
+                                        <td><input type="number" step=".01" min="0" name="groceries_fullcream_milk_input" id="groceries_fullcream_milk_input" class="petty_cash_summer_input item_quantity form-control" width="50%"></td>
+                                       
+                                    </tr>
+
+                                    <tr>
+                                        <td> Fresh Milk:</td>
+                                        <td><input type="number" step=".01" min="0" name="groceries_fresh_milk_input" id="groceries_fresh_milk_input" class="petty_cash_summer_input item_quantity form-control" width="50%"></td>
+                                      
+                                        
+                                    </tr>
+
+                                    
+
+                                    <tr>
+                                        <td> Whipped Cream:</td>
+                                        <td><input type="number" step=".01" min="0" name="whipped_cream_input" id="whipped_cream_input" class="item_quantity petty_cash_summer_input form-control" width="50%"></td>
+                                      
+                                        
+                                    </tr>
+
+                                    <tr>
+                                        <td>Others:</td>
+                                        <td><input type="number" step=".01" min="0" name="groceries_others" id="groceries_others" class="item_quantity petty_cash_summer_input form-control" width="50%"></td>
+                                      
+                                    </tr>
+                                </tbody>
+                            </table>
+                    </div>
+            </div>
+    </div>
+        
+                
+
+                <div class = "col-md-6">
+                        <div class="panel panel-color panel-info">
+                            <div class="panel-heading"> 
+                                <h3 class="panel-title">ITEMS BALANCE VIEW </h3> 
+                            </div> 
+                            <div class="panel-body"> 
+                
+                                <table class="table table-striped table-bordered" id="datatable_items" >
+                                    <thead>
+                                        <tr>
+                                            <th class="text-center">BAKI</th>
+                                            <th class="text-center">QTY</th>
+                                            <th class="text-center">Unit</th>
+                                        <tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>Ice:</td>
+                                            <td><input type="number" step=".01" min="0" name="ice_input" id="ice_input" class="item_quantity form-control" width="50%"></td>
+                                            <td class="unit_highlighter">bag</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Black Pearl:</td>
+                                            <td><input type="number" step=".01" min="0" name="black_pearl_input" id="black_pearl_input" class="item_quantity form-control" width="50%"></td>
+                                            <td class="unit_highlighter">gram</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Tepung Waffle:</td>
+                                            <td><input type="number" step=".01" min="0" name="tepung_waffle_input" id="tepung_waffle_input" class="item_quantity form-control" width="50%"></td>
+                                            <td class="unit_highlighter">tong</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Tepung CW:</td>
+                                            <td><input type="number" step=".01" min="0" name="tepung_cw_input" id="tepung_cw_input" class="item_quantity form-control" width="50%"></td>
+                                            <td class="unit_highlighter">senduk</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Gula:</td>
+                                            <td><input type="number" step=".01" min="0" name="gula_input" id="gula_input" class="item_quantity form-control" width="50%"></td>
+                                            <td class="unit_highlighter">tong</td>
+                                        </tr>
+
+                                        <tr>
+                                            <td>Milk Tea:</td>
+                                            <td><input type="number" step=".01" min="0" name="milk_tea_big_jag_input" id="milk_tea_big_jag_input" class="item_quantity form-control" width="50%"></td>
+                                            <td class="unit_highlighter">big jug</td>
+                                            
+                                        </tr>
+                                        <tr>
+                                            <td>Milk Tea:</td>
+                                            <td><input type="number" step=".01" min="0" name="milk_tea_small_jag_input" id="milk_tea_small_jag_input" class="item_quantity form-control" width="50%"></td>
+                                            <td class="unit_highlighter">small jug</td>   
+                                        </tr>
+                                    </tbody>
+                                </table>
+                        </div>
+                </div>
+        </div>
+        <div class="form-group text-center">
+            <button type="submit" class="btn btn-inverse btn-rounded btn-lg waves-effect waves-light m-b-5">Submit</button>
+        </div>
+           
+        </form>
+</div>
+    
+
+  </div>
+{% endblock %}
+{% block footer_links %}
+    <script src="{{ url_for('static', filename='assets/plugins/select2/dist/js/select2.min.js') }}" type="text/javascript"></script>
+    <script type="text/javascript">
+        $(document).ready(function() {
+            function get_sum_for_e_cell(float_rm_input_val){
+                //console.log(float_rm_input_val);
+                let total_amount_val = $("#total_amount").html();
+                if (float_rm_input_val.length>0){
+                    let result = parseFloat (total_amount_val) - float_rm_input_val;
+                    $("#e_cell").html(result.toFixed(2));
+                //let result = parseFloat (total_amount_val) - float_rm_input_val;
+                }else
+                    $("#e_cell").html(total_amount_val);
+            }
+                    function petty_cash_calculator(){
+                        let total = 0;
+                        $(".petty_cash_summer_input").each(function(){
+                            if ($(this).val().length!=0)
+                                total+=parseFloat($(this).val());
+                        });
+                        $("#petty_cash_input").val(total.toFixed(2));
+                        let e_cell_value = $("#e_cell").html();
+                        if (parseFloat($("#f_cell").html()) <  parseFloat ($("#total_z_report_rm_input").val()) ){
+                            $("#j_cell").html( parseFloat(e_cell_value) + parseFloat( $("#i_cell").html()) );
+                        } else{
+                            $("#j_cell").html(e_cell_value);
+                        }
+                        
+                        get_sum_for_e_cell($("#float_rm_input").val());
+                        get_sum_for_f_cell();
+                        
+                        if ($("#total_z_report_rm_input").val().length>0){
+                            let result =   parseFloat($("#f_cell").html()) - parseFloat($("#total_z_report_rm_input").val());
+                            $("#h_cell").html(result.toFixed(2));
+                            let i_res =  parseFloat($("#total_z_report_rm_input").val()) - parseFloat($("#f_cell").html());
+                            $("#i_cell").html(i_res.toFixed(2));
+                        }
+                       
+                    }  //end petty_cash_calculator here
+                    setInterval(function(){
+                        petty_cash_calculator();
+                    },1000);
+
+                    $("#groceries_ice_input_per_packet_price").on('keyup change',function(){
+                        
+                        if ($("#groceries_ice_input_quantity").val().length==0){
+                            Swal.fire({
+                                position: 'center',
+                                icon: 'error',
+                                title:'Quantity Error',
+                                text: "Please Enter The Quanity",
+                                showCancelButton: true,
+                                showConfirmButton: false,
+                                cancelButtonText: "Close alert",
+                                timer: 10000,
+                            });
+                        } 
+                        else{
+                            let groceries_ice_input_per_packet_price = $(this).val();
+                            let quantity = $("#groceries_ice_input_quantity").val();
+                            $("#groceries_ice_input").val(groceries_ice_input_per_packet_price*quantity);
+                        }
+                    });
+                    
+                    function erase_td_values_to_zero_val(){
+                        $('table#datatable tr').each(function() {
+                            if ($(this).find("td").eq(2).text().length!=0)
+                                 $(this).find("td").eq(2).html("0.00");
+                             
+                        });
+                    }                   
+                    var dateControler = {
+                        currentDate : null
+                    }
+                 /////////// Get all the feeded values ///////////////
+                 let values=[];
+                 if($("input[name='values[]']").length){
+                        $("input[name='values[]']").each(function() {
+                            var obj = {};
+                            let val = $(this).val();
+                            let sp = val.split(",");
+                            let date = sp[0];
+                            let outlet_code = sp[1];
+                            let outlet_number  = (outlet_code.split("."))[0];
+                            obj['date'] = date;
+                            obj['outlet_code'] =outlet_code;
+                            values.push(obj);
+                        });
+                        
+                    }
+
+                 $(document).on( "change", "#date",function( event, ui ) {
+                        var now = new Date();
+                        var selectedDate = new Date($(this).val());
+                        if(selectedDate > now) {                        
+                            $(this).val(dateControler.currentDate);
+                            Swal.fire({
+                                position: 'center',
+                                icon: 'error',
+                                title:'Date Error',
+                                text: "You Can't Choose Any Future Date",
+                                showCancelButton: true,
+                                showConfirmButton: false,
+                                cancelButtonText: "Close alert",
+                                timer: 10000,
+                            });
+                        } else {
+                            dateControler.currentDate = $(this).val();
+                        }
+                    });
+                    // for A Cell
+                    function get_sum_for_a_cell(){ 
+                        var sum = 0;
+
+                        $('.value').each(function() {
+                            sum += Number($(this).html()) || 0;
+                        });
+                        $("#total_amount").html(parseFloat(sum).toFixed(2));
+                    }
+                    
+                 
+
+                    function get_sum_for_f_cell(){
+                       let petty_cash_input_val = $("#petty_cash_input").val();
+                       let e_wallets_rm_input = $("#e_wallets_rm_input").val();
+                       if (petty_cash_input_val.length==0){
+                            petty_cash_input_val = 0.00;
+                       }
+                       if (e_wallets_rm_input.length==0){
+                            e_wallets_rm_input=0.00;
+                       }
+                      
+                       let e_cell_value = $("#e_cell").html();
+                        let sum = parseFloat(e_cell_value)+parseFloat(e_wallets_rm_input)+parseFloat(petty_cash_input_val);
+                       $("#f_cell").html(sum.toFixed(2));
+                    }
+
+
+
+
+                    $(document).on('change keyup','.quantity',function(){
+                       
+                       
+                        let data_id = $(this).data('id');
+                        let all_tds = $("#row_"+data_id).children(1).closest('td');
+                        let rm =  all_tds[0].innerText;
+                        if ($(this).val().length>0){
+                            $("#calculation_"+data_id).empty().html(parseFloat(rm*parseInt($(this).val())).toFixed(2));
+                            /////// GETTING SUM of Values //////////////
+                            get_sum_for_a_cell();
+                            /////////////////////////////////////
+                            let value_for_c = $("#float_rm_input").val();
+                            if (value_for_c.length>0)
+                                get_sum_for_e_cell(parseFloat(value_for_c));
+                            else
+                                get_sum_for_e_cell("");
+                            
+                            
+                           // get_sum_for_f_cell();
+                        
+                        }else
+                            $("#calculation_"+data_id).empty().html("0.00");
+                    });
+                    
+                   // $(document).on('change keyup','#petty_cash_input',function(){
+                    //    get_sum_for_f_cell();
+                   // });
+
+                  //  $(document).on('change keyup','#e_wallets_rm_input',function(){
+                  //      get_sum_for_f_cell();
+                 //   });
+
+                    $(document).on('change keyup','#total_z_report_rm_input',function(){
+                        //console.log("I am working");
+                        
+                        let e_cell_value = $("#e_cell").html();
+                        if (parseFloat($("#f_cell").html()) <  parseFloat ($(this).val()) ){
+                            
+                            $("#j_cell").html( parseFloat(e_cell_value) + parseFloat( $("#i_cell").html()) );
+                        } else{
+                            $("#j_cell").html(e_cell_value);
+                        }
+
+
+                        if ($(this).val().length>0){ 
+                            let result =  parseFloat($("#f_cell").html()) - parseFloat($(this).val())  ;
+                            $("#h_cell").html(result.toFixed(2));
+                            
+                            $("#i_cell").html( parseFloat($(this).val()) - parseFloat($("#f_cell").html()) );
+                        }else{
+                            $("#h_cell").html($("#f_cell").html());
+                            var res= parseFloat($("#f_cell").html());
+                            $("#i_cell").html(res.toFixed(2));
+                        }
+                    });
+                    
+
+                    const characters ='ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+
+                    function generateString(length) {
+                        let result = ' ';
+                        const charactersLength = characters.length;
+                        for ( let i = 0; i < length; i++ ) {
+                            result += characters.charAt(Math.floor(Math.random() * charactersLength));
+                        }
+
+                        return result;
+                    }
+                    
+                    $(document).on('change keyup','#float_rm_input',function(){
+                            
+                            var result = $("#total_amount").html() - $(this).val();
+                            $("#e_cell").html(result.toFixed(2));
+                    });
+
+                    jQuery(".select2").select2({
+                        width: '100%'
+                    });
+
+                    // this function will return the day from date
+                    function getDayName(dateStr, locale)
+                    {
+                        var date = new Date(dateStr);
+                        return date.toLocaleDateString(locale, { weekday: 'long' });        
+                    }
+                    
+                    //console.table(values);
+                    function get_function(date,outlet_name){
+                        let found = 0;
+                        values.map((item)=>{
+                            
+                            if (item.date.trim() == date.trim() && item.outlet_code.trim()== outlet_name.trim()){
+                                found = 1;
+                            }
+                        });
+                        return found;
+                    }
+
+                    $("#black_pearl_input").change(function(){
+                        let value = $(this).val();
+                        if (value .includes('.'))
+                            $("#black_pearl_input").val(parseFloat(value)*1000);
+                    });
+                    
+                    //console.table(values);
+                    // submit the form
+                    $("#closing_calculator_form").submit(function(e){
+                        let stuff_name = $("#nama_stuff").val();
+                        let outlet_code = $("#outlet").find(':selected').val();
+                        let outlet_name = $("#outlet").find(':selected').text();
+                        let date = $("#date").val();
+                        let day = getDayName(date);
+                        let check_exist = get_function(date,outlet_name);
+                        var obj = {};
+                        obj['date'] = date;
+                        obj['outlet_code'] =outlet_name.trim();
+                        values.push(obj);
+                        if (check_exist==1){
+                            Swal.fire({
+                                position: 'center',
+                                icon: 'error',
+                                title:'Error In Form Submission',
+                                text: "Sila inform dalam group Orange seabab tidak boleh submit report. Terima Kasih",
+                                showConfirmButton:false,
+                                showCancelButton: true,
+                                cancelButtonText: "Close alert",
+                                timer: 10000,
+                            });
+                            return false;
+                        }else{          
+                                        let div = '<div id="mapper"><p class="no_space_in_copy_board">Outlet: '+outlet_name+'</p><p class="no_space_in_copy_board">Date: '+date+'</p><p class="no_space_in_copy_board">By: '+stuff_name+'</p><br/>';
+                                        let total_bank_in = $("#j_cell").text();
+                                        let e_wallet = $("#e_wallets_rm_input").val();
+                                        let petty_cash = $("#petty_cash_input").val();
+                                        div += '<p class="no_space_in_copy_board">Total bank in: '+total_bank_in+'</p><p class="no_space_in_copy_board">Ewallets+Credit Cards: '+e_wallet+'</p><p class="no_space_in_copy_board">Petty cash: '+petty_cash+'</p><br/>';
+
+                                        let total_sale = $("#f_cell").text();
+                                        let z_report = $("#total_z_report_rm_input").val();
+                                        let cash = $("#h_cell").text();
+                                        
+                                        div += '<p class="no_space_in_copy_board">Total sale: '+total_sale+'</p><p class="no_space_in_copy_board">Z Report: '+z_report+'</p><p class="no_space_in_copy_board">Cash: '+cash+'</p><br/>';
+                                        
+                                        let groceries_ice_input_per_packet_price  = $("#groceries_ice_input_per_packet_price").val();
+                                        let groceries_ice_input_quantity  = $("#groceries_ice_input_quantity").val();
+                                        let groceries_ice_input = $("#groceries_ice_input").val();
+
+                                        
+
+                                        let groceries_eggs_input = $("#groceries_eggs_input").val();
+                                        let groceries_sugar_input= $("#groceries_sugar_input").val();
+                                        let groceries_oils_input= $("#groceries_oils_input").val();
+                                        let groceries_fullcream_milk_input= $("#groceries_fullcream_milk_input").val();
+                                        let groceries_fresh_milk_input= $("#groceries_fresh_milk_input").val();
+                                        let whipped_cream_input = $("#whipped_cream_input").val();
+                                        let groceries_others= $("#groceries_others").val();
+                                        
+                                        div += '<p class="no_space_in_copy_board">Groceries</p><p class="no_space_in_copy_board">Ice ('+groceries_ice_input_quantity+'x'+groceries_ice_input_per_packet_price+'): '+groceries_ice_input+'</p><p class="no_space_in_copy_board">Eggs:'+groceries_eggs_input+'</p><p class="no_space_in_copy_board">Sugar: '+groceries_sugar_input+'</p><p class="no_space_in_copy_board">Oils: '+groceries_oils_input+'</p><p class="no_space_in_copy_board">Full Cream Milk: '+groceries_fullcream_milk_input+'</p><p class="no_space_in_copy_board">Fresh Milk: '+groceries_fresh_milk_input+'</p><p class="no_space_in_copy_board">Whipped Cream: '+whipped_cream_input+'</p><p class="no_space_in_copy_board">Others: '+groceries_others+'</p><br/>';
+                                        
+                                        
+                                        let ice_input = $("#ice_input").val();
+                                        let black_pearl_input = $("#black_pearl_input").val();
+                                        let tepung_waffle_input = $("#tepung_waffle_input").val();
+                                        let tepung_cw_input  = $("#tepung_cw_input").val();
+                                        let gula_input = $("#gula_input").val();
+                                        let milk_tea_big_jag_input = $("#milk_tea_big_jag_input").val();
+                                        let milk_tea_small_jag_input = $("#milk_tea_small_jag_input").val();
+                                        div += '<p class="no_space_in_copy_board">Baki</p><p class="no_space_in_copy_board">Ice (bag): '+ice_input+'</p><p class="no_space_in_copy_board">Black Pearl (gram): '+black_pearl_input+'</p><p class="no_space_in_copy_board">Tepung Waffle (tong): '+tepung_waffle_input+'</p><p class="no_space_in_copy_board">Tepung CW(jug): '+tepung_cw_input+'</p><p class="no_space_in_copy_board">Gula (tong): '+gula_input+'</p><p class="no_space_in_copy_board">Milk Tea (big jug): '+milk_tea_big_jag_input+'</p><p class="no_space_in_copy_board">Milk Tea (small jug): '+milk_tea_small_jag_input+'</p><br/>';
+                                        //let random_code = generateString(6);
+
+                                        //div+='<p class="no_space_in_copy_board"><---------- Other Info ----------></p><p>Computer Generated:'+random_code+'</p><p>Contoh: '+(total_sale-z_report)+'</p><p>Petty Cash Breakdown:<p id="data_written"></p></p><input type="text" value="Isi petty cash items sini" id="write_stuff" name="write_stuff" >';
+                                        div +='</br><button class="copy_text btn btn-success" type="button" id="copy_btn">Copy to clipboard</button>';
+                                        // save form Values
+                                        
+                                        $.ajax({
+                                            type: 'POST',
+                                            data:{
+                                                stuff_name:stuff_name,
+                                                date:date,
+                                                day:day,
+                                                outlet_code:outlet_code,
+                                                outlet_name:outlet_name,
+                                                total_bank_in:total_bank_in,
+                                                e_wallet:e_wallet,
+                                                petty_cash:petty_cash,
+                                                total_sale:total_sale,
+                                                z_report:z_report,
+                                                groceries_ice_input : groceries_ice_input,
+                                                groceries_ice_input_per_packet_price:groceries_ice_input_per_packet_price,
+                                                groceries_ice_input_quantity: groceries_ice_input_quantity,
+                                                groceries_eggs_input : groceries_eggs_input,
+                                                groceries_sugar_input : groceries_sugar_input,
+                                                groceries_oils_input : groceries_oils_input,
+                                                groceries_fullcream_milk_input : groceries_fullcream_milk_input,
+                                                groceries_fresh_milk_input : groceries_fresh_milk_input,
+                                                whipped_cream_input: whipped_cream_input, 
+                                                groceries_others : groceries_others,
+                                                ice_input : ice_input,
+                                                black_pearl_input : black_pearl_input,
+                                                tepung_waffle_input : tepung_waffle_input,
+                                                tepung_cw_input : tepung_cw_input,
+                                                gula_input : gula_input,
+                                                milk_tea_big_jag_input : milk_tea_big_jag_input,
+                                                milk_tea_small_jag_input : milk_tea_small_jag_input,
+
+                                            },
+                                            url:'/cp_closing_calculator',
+                                            success:function(data){
+                                                if(data.success==1){
+                                                    let value_map = date+","+outlet_name.split(".")[1].trim()+","+outlet_name.split(".")[0].trim();
+                                                    let input = '<input type="hidden" name="values[]"  value="'+value_map+'">';
+                                                    $("#hide_values_appender").append(input);
+                                                    // erase_td_values_to_zero_val();
+                                                    // $("#closing_calculator_form")[0].reset();
+                                                    Swal.fire({
+                                                        position: 'center',
+                                                        icon: 'success',
+                                                        title:'Form Has been Submitted',
+                                                        text: "Form Details has been saved successfully",
+                                                        cancelButtonText: "Close alert",
+                                                        showConfirmButton: false,
+                                                        showCancelButton: true,
+                                                        timer: 10000,
+                                                    });
+                                                    $("#myModal_heading").html("Copy Report");
+                                                    $("#myModal_body").empty().append(div);
+                                                    $("#myModal").modal('show');
+                                                } //end success function here
+                                            }
+                                        });  // end ajax call here
+                                        
+                        }  //end if condition here
+                        e.preventDefault();
+
+                    });
+                    
+                    $(document).on('click','.copy_text',function(){
+                        let whole_para_content = $("#mapper").html();
+                        var r = document.createRange();
+                        r.selectNode(document.getElementById("mapper"));
+                        window.getSelection().removeAllRanges();
+                        window.getSelection().addRange(r);
+                        document.execCommand('copy');
+                        window.getSelection().removeAllRanges();
+                        Swal.fire({
+                            position: 'top center',
+                            icon: 'success',
+                            title:'Copied',
+                            text: "Report has been copied successfully",
+                            showConfirmButton: false,
+                            showCancelButton: true,
+                            cancelButtonText: "Close alert",
+                            timer: 10000,
+                        });
+                        erase_td_values_to_zero_val();
+                        $("#closing_calculator_form")[0].reset();
+                    });
+});  //end ready here
+</script>
+{% endblock %}

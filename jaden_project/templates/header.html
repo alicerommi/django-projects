@@ -1,0 +1,127 @@
+<!-- Developed By: Abdul Rehman
+Email: rehmana578@gmail.coom
+Phone: +92 308 5092071
+Website: http://fiverrwala.com -->
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>Sales & Ingredients Report Submission Web Portal | {% block title %}{% endblock %}</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
+    <meta content="Sales & Ingredients Report Submission Web Portal " name="description" />
+    <meta content="Sales & Ingredients Report Submission Web Portal " name="author" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <link href="{{ url_for('static', filename='assets/images/favicon_1.ico') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='assets/plugins/magnific-popup/dist/magnific-popup.css') }}" type="text/css"/>
+    <link href="{{ url_for('static', filename='assets/plugins/select2/dist/css/select2.css') }}" rel="stylesheet" type="text/css">
+    <link href="{{ url_for('static', filename='assets/plugins/select2/dist/css/select2-bootstrap.css') }}" rel="stylesheet" type="text/css">
+    <link href="{{ url_for('static', filename='assets/css/bootstrap.min.css') }}" rel="stylesheet" type="text/css">
+    <link href="{{ url_for('static', filename='assets/plugins/notifications/notification.css') }}" rel="stylesheet" type="text/css">
+    <link href="{{ url_for('static', filename='assets/css/core.css') }}" rel="stylesheet" type="text/css">
+    <link href="{{ url_for('static', filename='assets/css/icons.css') }}" rel="stylesheet" type="text/css">
+    <link href="{{ url_for('static', filename='assets/css/components.css') }}" rel="stylesheet" type="text/css"/>
+    <link href="{{ url_for('static', filename='assets/css/pages.css') }}" rel="stylesheet" type="text/css"/>
+    <link href="{{ url_for('static', filename='assets/css/menu.css') }}" rel="stylesheet" type="text/css"/>
+    <link href="{{ url_for('static', filename='assets/css/responsive.css') }}" rel="stylesheet" type="text/css"/>
+    <link href="{{ url_for('static', filename='assets/plugins/modal-effect/css/component.css') }}" rel="stylesheet" type="text/css"/>
+    <link href="{{ url_for('static', filename='assets/css/sweetalert2.css') }}" rel="stylesheet" type="text/css"/>
+    <script src="{{ url_for('static', filename='assets/js/modernizr.min.js') }}"> </script>
+    {% block header_links %}{% endblock %}
+  </head>
+  <body class="fixed-left">
+    <!-- <input type="hidden" id="" > -->
+    <!-- Begin page -->
+    <div id="wrapper">
+      <!-- Top Bar Start -->
+      <div class="topbar">
+        <!-- LOGO -->
+        <div class="topbar-left">
+          <div class="text-center">
+            <a href="/" class="logo"><i class="fa fa-home"></i></a>
+          </div>
+        </div>
+        <!-- Button mobile view to collapse sidebar menu -->
+        <div class="navbar navbar-default" role="navigation">
+
+
+          <div class="container">
+            <div class="">
+              <ul class="nav navbar-nav navbar-right pull-right">           
+                  <li class="hidden-xs">
+                      <a href="#" id="btn-fullscreen" class="waves-effect waves-light"><i class="md md-crop-free"></i></a>
+                  </li>
+                
+              </ul>
+            </div>
+            <div class="">
+              <div class="pull-left">
+                                <button type="button" class="button-menu-mobile open-left">
+                                    <i class="fa fa-bars"></i>
+                                </button>
+                               
+                <span class="clearfix"></span>
+              </div>
+            </div>
+            <!--/.nav-collapse -->
+          </div>
+        </div>
+      </div>
+      <div class="left side-menu">
+        <div class="sidebar-inner slimscrollleft">
+            <div id="sidebar-menu">
+                      <!-- <ul>
+                          <li>
+                                <a href="/" class="waves-effect"><i class="md md-home"></i><span> Home</span></a>
+                            </li>
+                            <li>
+                                <a href="/closing_calculator" class="waves-effect"><i class="md md-list"></i><span> Closing Cal.</span></a>
+                            </li>
+                        <div class="clearfix"></div>
+                      </ul> -->
+                    </div>
+          <div class="clearfix"></div>
+        </div>
+      </div>
+      <!-- Left Sidebar End -->
+          <div class="content-page">
+                <div class="content">
+                  <div class="container">
+                    {% block body %}{% endblock %}
+                </div>
+          </div>
+          <footer class="footer text-right">
+                2022 © Sales & Ingredients Report Submission Web Portal 
+          </footer>
+        </div>
+        <script>
+            var resizefunc = [];
+        </script>
+        <!-- CUSTOM JS -->
+        <script src="{{ url_for('static', filename='assets/js/jquery.min.js') }}"></script>
+        <script src="{{ url_for('static', filename='assets/js/bootstrap.min.js') }}"></script>
+        <script src="{{ url_for('static', filename='assets/js/detect.js') }}"></script>
+        <script src="{{ url_for('static', filename='assets/js/fastclick.js') }}"></script>
+        <script src="{{ url_for('static', filename='assets/js/jquery.slimscroll.js') }}"></script>
+        <script src="{{ url_for('static', filename='assets/js/jquery.blockUI.js') }}"></script>
+        <script src="{{ url_for('static', filename='assets/js/waves.js') }}"></script>
+        <script src="{{ url_for('static', filename='assets/js/wow.min.js') }}"></script>
+        <script src="{{ url_for('static', filename='assets/js/jquery.nicescroll.js') }}"></script>
+        <script src="{{ url_for('static', filename='assets/js/jquery.scrollTo.min.js') }}"></script>
+        <script src="{{ url_for('static', filename='assets/js/sweetalert2.js') }}"></script>
+        <script src="{{ url_for('static', filename='assets/js/jquery.app.js') }}"></script>
+        {% block footer_links %}{% endblock %}
+        
+    </body>
+</html>
+<div id="myModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="custom-width-modalLabel" aria-hidden="true" style="display: none">
+  <div class="modal-dialog" style="width:55%">
+      <div class="modal-content">
+          <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+              <h4 class="modal-title" id="myModal_heading"></h4>
+          </div>
+          <div class="modal-body" id="myModal_body">
+          </div>
+      </div>
+  </div>
+</div>

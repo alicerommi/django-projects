@@ -1,0 +1,89 @@
+{% load static %}
+<html>
+<head>
+        <meta charset="utf-8" />
+        <title>Login Page - Application Name</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+        <meta content="" name="description" />
+        <meta content="" name="author" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <link
+      href="{% static 'assets/images/favicon_1.ico' %}"
+      type="image/ico"
+      rel="Shortcut Icon"
+    /> 
+        <link href="{% static 'assets/css/bootstrap.min.css' %}" rel="stylesheet" type="text/css">
+        <link href="{% static 'assets/css/core.css' %}" rel="stylesheet" type="text/css">
+        <link href="{% static 'assets/css/icons.css' %}" rel="stylesheet" type="text/css">
+        <link href="{% static 'assets/css/components.css' %}" rel="stylesheet" type="text/css">
+        <link href="{% static 'assets/css/pages.css' %}" rel="stylesheet" type="text/css">
+        <link href="{% static 'assets/css/menu.css' %}" rel="stylesheet" type="text/css">
+        <link href="{% static 'assets/css/responsive.css' %}" rel="stylesheet" type="text/css">
+        <script src="{% static 'assets/js/modernizr.min.js' %}"></script>
+    </head>
+    <body>
+
+
+        <div class="wrapper-page">
+            <div class="panel panel-color panel-primary panel-pages">
+                <div class="panel-heading bg-img"> 
+                    <div class="bg-overlay"></div>
+                    <h3 class="text-center m-t-10 text-white"> Sign In to <strong>Your Portal</strong> </h3>
+                </div>
+                <div class="panel-body">
+                    <form class="form-horizontal m-t-20" method="post" action="login_form">
+                            {% csrf_token %}
+                            {% if err %}
+                                
+                                    <div class="alert alert-warning error_show" id="msg">{{ err }}</div>
+                                
+                            {% endif %}
+                            
+                        <div class="form-group">
+                            <div class="col-xs-12">
+                                <input class="form-control input-lg" name="useremail" type="text" required placeholder="Username" >
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <div class="col-xs-12">
+                                <input class="form-control input-lg" type="password" name="userpassword" required placeholder="Password">
+                            </div>
+                        </div>
+
+                      
+                        <div class="form-group text-center m-t-40">
+                            <div class="col-xs-12">
+                                <button class="btn btn-primary btn-lg w-lg waves-effect waves-light" type="submit" name="">Log In</button>
+                            </div>
+                        </div>
+                    </form> 
+                </div>                                 
+                
+            </div>
+        </div>
+
+        
+        <script>
+            var resizefunc = [];
+        </script>
+        <!-- Main  -->
+        <script src="{% static 'assets/js/jquery.min.js' %}"></script>
+        <script src="{% static 'assets/js/bootstrap.min.js' %}"></script>
+        <script src="{% static 'assets/js/detect.js' %}"></script>
+        <script src="{% static 'assets/js/fastclick.js' %}"></script>
+        <script src="{% static 'assets/js/jquery.slimscroll.js' %}"></script>
+        <script src="{% static 'assets/js/jquery.blockUI.js' %}"></script>
+        <script src="{% static 'assets/js/waves.js' %}"></script>
+        <script src="{% static 'assets/js/wow.min.js' %}"></script>
+        <script src="{% static 'assets/js/jquery.nicescroll.js' %}"></script>
+        <script src="{% static 'assets/js/jquery.scrollTo.min.js' %}"></script>
+        <script src="{% static 'assets/js/jquery.app.js' %}"></script>
+        <script type="text/javascript">
+
+            //check for Navigation Timing API support
+
+            
+        </script>
+    </body>
+</html>
